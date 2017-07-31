@@ -13,8 +13,66 @@
 # ----- GAME OVER -----
 # Good bye!
 
-def Player
+class Player
+  def initialize id
+    @life = 3
+    @id = id
+  end
+
+  def lose_life
+    @life -= 1
+    p "LIFE LOST"
+    p @life
+  end
+
+  def self.life
+    @life
+  end
+  def id
+    @id
+  end
 end
 
-def Current_Player
+class Question
+  def ask player
+    num1 = rand(5)
+    num2 = rand(5)
+    p "P#{player.id}: What does #{num1} plus #{num2} equal?"
+    @answer = num1 + num2
+    @guess = $stdin.gets.chomp.to_i
+    if (@answer == @guess)
+      p "P#{player.id}: YES! You are correct."
+    else
+      p "P#{player.id}: Seriously? No!"
+      p player.lose_life
+    end
+  end
 end
+
+class Game
+
+  def initialize
+    @turns = 1
+    @player1 = Player.new 1
+    @player2 = Player.new 2
+    start_round
+  end
+
+  def start_round
+    question1 = Question.new
+    while
+      p "TURN ##{@turns}"
+      if (@turns % 2 == 1 )
+        question1.ask @player1
+      else
+        question1.ask @player2
+      end
+      @turns += 1
+    end
+  end
+  def game_over
+    p "GAME OVER"
+  end
+end
+
+game = Game.new
