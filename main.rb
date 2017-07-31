@@ -1,6 +1,6 @@
-require 'pry'
+
 require './Player'
-require './Question'
-require './Game'
+require './question'
+require './game'
 
 game = Game.new

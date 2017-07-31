@@ -1,20 +1,17 @@
+
 class Player
-  attr_accessor :id
+
   def initialize id
-    @life = 1
+    @life = 3
     @id = id
   end
 
-  def lose_life
+  def lose_life player
     @life -= 1
-    if @life == 0
-      puts "GAME OVER"
-      # game.game_over
-    end
   end
 
   def life
-    "#{@life}/3"
+    @life
   end
 
   def id
